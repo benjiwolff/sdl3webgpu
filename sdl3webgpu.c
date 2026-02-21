@@ -159,11 +159,11 @@ WGPUSurface SDL_GetWGPUSurface(WGPUInstance instance, SDL_Window* window) {
         fromCanvasHTMLSelector.chain.sType = WGPUSType_SurfaceDescriptorFromCanvasHTMLSelector;
 #  endif
         fromCanvasHTMLSelector.chain.next = NULL;
-        fromCanvasHTMLSelector.selector = "canvas";
+        fromCanvasHTMLSelector.selector = {.data = "canvas", .length = WGPU_STRLEN};
 
         WGPUSurfaceDescriptor surfaceDescriptor;
         surfaceDescriptor.nextInChain = &fromCanvasHTMLSelector.chain;
-        surfaceDescriptor.label = NULL;
+        surfaceDescriptor.label = {.data = "Main window", .length = WGPU_STRLEN};
 
         return wgpuInstanceCreateSurface(instance, &surfaceDescriptor);
     }  
